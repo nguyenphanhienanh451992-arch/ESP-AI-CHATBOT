@@ -129,6 +129,14 @@
   .prose pre { overflow-x:auto; }
   @media (max-width:720px) { .top h1 { gap:10px; } .header-robot { padding-right:10px; } }
 
+  .ai-mode-bar { margin: 18px clamp(16px,3.2vw,44px) 0; padding: 12px 16px; border: 1px solid #a6d9ce; border-radius: 14px; background: #f0fbf7; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; justify-content: space-between; }
+  .ai-mode-bar label { display:flex; gap:9px; align-items:center; font-weight:700; cursor:pointer; }
+  .ai-mode-bar input { width:20px; height:20px; accent-color:var(--teal); }
+  .ai-mode-tip { font-size:13px; color:#315d55; }
+  a.choice { text-decoration: none; }
+  a.choice:focus-visible, .practice-page-link:focus-visible { outline:3px solid #00876b; outline-offset:3px; }
+  a.choice:after { content:'↗'; margin-left:auto; font-size:15px; color:#006b56; }
+  a.choice[aria-pressed="true"]:after { content:'✓'; }
   /* Practice subpage shortcuts — matching the original teal/mint palette */
   .practice-pages-panel { margin: 18px clamp(16px,3.2vw,44px) 32px; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: #f9fefd; }
   .practice-pages-panel h2 { margin: 0 0 6px; font-size: clamp(18px,2vw,24px); color: var(--teal); }
@@ -166,18 +174,18 @@
       </div>
       <h2 class="group-title" id="typesTitle"><span data-vi="Chọn dạng bài luyện tập">Choose Exercise Types</span></h2>
       <div class="choices" role="group" aria-labelledby="typesTitle">
-      <button type="button" class="choice" data-type="1" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z M14 3v6h6 M9 13h8 M9 17h6"/></svg></span><span data-vi="Trắc nghiệm">Multiple Choice</span></button>
-      <button type="button" class="choice" data-type="2" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13l4-4 M8 16l-2 2a3 3 0 0 1-4-4l4-4a3 3 0 0 1 4 0 M16 8l2-2a3 3 0 0 1 4 4l-4 4a3 3 0 0 1-4 0"/></svg></span><span data-vi="Ghép từ – định nghĩa">Match Words to Definitions</span></button>
-      <button type="button" class="choice" data-type="3" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l2-6L17 3a2 2 0 0 1 3 3L8 19z M14 6l4 4"/></svg></span><span data-vi="Điền vào chỗ trống">Gap Fill</span></button>
-      <button type="button" class="choice" data-type="4" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a2 2 0 1 1 4 0h6v6a2 2 0 1 1 0 4v6h-6a2 2 0 1 0-4 0H4v-6a2 2 0 1 0 0-4z"/></svg></span><span data-vi="Kết hợp từ">Collocations</span></button>
-      <button type="button" class="choice" data-type="5" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-8-8 M16 12a4 4 0 1 1-4-4 M12 12l8-8 M18 4h2v2"/></svg></span><span data-vi="Chọn từ theo ngữ cảnh">Vocabulary in Context</span></button>
-      <button type="button" class="choice" data-type="6" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z M3 7l9 4 9-4 M12 11v10"/></svg></span><span data-vi="Bài tập tổng hợp">Mixed Practice</span></button>
+      <a class="choice" data-type="1" aria-pressed="false" href="practice-pages/multiple-choice.html" target="_blank" rel="noopener noreferrer" title="Open multiple-choice exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z M14 3v6h6 M9 13h8 M9 17h6"/></svg></span><span data-vi="Trắc nghiệm">Multiple Choice</span></a>
+      <a class="choice" data-type="2" aria-pressed="false" href="practice-pages/matching.html" target="_blank" rel="noopener noreferrer" title="Open matching exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13l4-4 M8 16l-2 2a3 3 0 0 1-4-4l4-4a3 3 0 0 1 4 0 M16 8l2-2a3 3 0 0 1 4 4l-4 4a3 3 0 0 1-4 0"/></svg></span><span data-vi="Ghép từ – định nghĩa">Match Words to Definitions</span></a>
+      <a class="choice" data-type="3" aria-pressed="false" href="practice-pages/gap-fill.html" target="_blank" rel="noopener noreferrer" title="Open gap-fill exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l2-6L17 3a2 2 0 0 1 3 3L8 19z M14 6l4 4"/></svg></span><span data-vi="Điền vào chỗ trống">Gap Fill</span></a>
+      <a class="choice" data-type="4" aria-pressed="false" href="practice-pages/collocations.html" target="_blank" rel="noopener noreferrer" title="Open collocations exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a2 2 0 1 1 4 0h6v6a2 2 0 1 1 0 4v6h-6a2 2 0 1 0-4 0H4v-6a2 2 0 1 0 0-4z"/></svg></span><span data-vi="Kết hợp từ">Collocations</span></a>
+      <a class="choice" data-type="5" aria-pressed="false" href="practice-pages/word-choice-context.html" target="_blank" rel="noopener noreferrer" title="Open word-choice-context exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-8-8 M16 12a4 4 0 1 1-4-4 M12 12l8-8 M18 4h2v2"/></svg></span><span data-vi="Chọn từ theo ngữ cảnh">Vocabulary in Context</span></a>
+      <a class="choice" data-type="6" aria-pressed="false" href="practice-pages/mixed-practice.html" target="_blank" rel="noopener noreferrer" title="Open mixed-practice exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z M3 7l9 4 9-4 M12 11v10"/></svg></span><span data-vi="Bài tập tổng hợp">Mixed Practice</span></a>
       </div>
       <h2 class="group-title" id="skillsTitle"><span data-vi="Chọn kỹ năng vận dụng">Choose Skills to Practise</span></h2>
       <div class="choices skills" role="group" aria-labelledby="skillsTitle">
-      <button type="button" class="choice" data-type="7" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v-3a9 9 0 0 1 18 0v3 M3 15v3a2 2 0 0 0 2 2h2v-7H5a2 2 0 0 0-2 2z M21 15v3a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2z"/></svg></span><span data-vi="Luyện nghe">Listening</span></button>
-      <button type="button" class="choice" data-type="8" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-2a6 6 0 0 1 12 0v2 M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M16 5a5 5 0 0 1 0 5 M19 3a8 8 0 0 1 0 9"/></svg></span><span data-vi="Luyện nói">Speaking</span></button>
-      <button type="button" class="choice" data-type="9" aria-pressed="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v15 M2 4c4-1 7-1 10 1 3-2 6-2 10-1v15c-4-1-7-1-10 1-3-2-6-2-10-1z"/></svg></span><span data-vi="Luyện đọc">Reading</span></button>
+      <a class="choice" data-type="7" aria-pressed="false" href="practice-pages/listening.html" target="_blank" rel="noopener noreferrer" title="Open listening exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v-3a9 9 0 0 1 18 0v3 M3 15v3a2 2 0 0 0 2 2h2v-7H5a2 2 0 0 0-2 2z M21 15v3a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2z"/></svg></span><span data-vi="Luyện nghe">Listening</span></a>
+      <a class="choice" data-type="8" aria-pressed="false" href="practice-pages/speaking.html" target="_blank" rel="noopener noreferrer" title="Open speaking exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-2a6 6 0 0 1 12 0v2 M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M16 5a5 5 0 0 1 0 5 M19 3a8 8 0 0 1 0 9"/></svg></span><span data-vi="Luyện nói">Speaking</span></a>
+      <a class="choice" data-type="9" aria-pressed="false" href="practice-pages/reading.html" target="_blank" rel="noopener noreferrer" title="Open reading exercise page"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v15 M2 4c4-1 7-1 10 1 3-2 6-2 10-1v15c-4-1-7-1-10 1-3-2-6-2-10-1z"/></svg></span><span data-vi="Luyện đọc">Reading</span></a>
       <button type="button" class="choice" data-type="10" aria-pressed="false" aria-controls="writingLevels" aria-expanded="false"><span class="ico" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l2-6L17 3a2 2 0 0 1 3 3L8 19z M14 6l4 4"/></svg></span><span data-vi="Luyện viết">Writing</span></button>
       </div>
       <div id="writingLevels" class="writing-levels" role="group" aria-label="Choose a writing level" data-vi-aria-label="Chọn mức luyện viết" hidden>
@@ -185,6 +193,10 @@
         <label><input type="radio" name="practiceWritingLevel" value="2"> <span data-vi="Level 2 · Viết hội thoại">Level 2 · Dialogue Writing</span></label>
         <label><input type="radio" name="practiceWritingLevel" value="3"> <span data-vi="Level 3 · Viết đoạn văn">Level 3 · Paragraph Writing</span></label>
       </div>
+    </div>
+    <div class="ai-mode-bar">
+      <label for="aiModeToggle"><input id="aiModeToggle" type="checkbox"> <span data-vi="Chọn dạng bài để AI tạo (bật để chọn nhiều ô, thay vì mở trang)">Select exercise types for AI generation (instead of opening pages)</span></label>
+      <span class="ai-mode-tip" data-vi="Mặc định: nhấn một ô bài tập sẽ mở trang HTML tương ứng ở tab mới.">By default, clicking an exercise tile opens its own HTML page in a new tab.</span>
     </div>
     <div class="foot">
       <button type="button" class="choice" data-type="11" aria-pressed="false"><span data-vi="Để chatbot tự chọn dạng phù hợp">Let the chatbot choose</span></button>
@@ -269,12 +281,38 @@
 
   let emptyAnswer = false;
   const writingLevels = document.getElementById('writingLevels');
-  writingLevels.addEventListener('change', updatePracticeState);
+  const aiModeToggle = document.getElementById('aiModeToggle');
+  aiModeToggle.addEventListener('change', () => {
+    if (!aiModeToggle.checked) {
+      selectedTypes = [];
+      document.querySelectorAll('.choice[data-type]').forEach(el => el.setAttribute('aria-pressed', 'false'));
+      writingLevels.hidden = true;
+      writingLevels.querySelectorAll('input').forEach(el => el.checked = false);
+    }
+    updatePracticeState();
+  });
+  writingLevels.addEventListener('change', event => {
+    if (!aiModeToggle.checked && event.target.matches('input[name="practiceWritingLevel"]')) {
+      const url = new URL('practice-pages/writing-level-' + event.target.value + '.html', window.location.href);
+      window.open(url.href, '_blank', 'noopener,noreferrer');
+    }
+    updatePracticeState();
+  });
 
   // Xử lý chọn/bỏ chọn các nút dạng bài (Tiles)
   document.querySelectorAll('.choice').forEach(btn => {
-    btn.onclick = () => {
+    btn.onclick = (event) => {
       const typeId = parseInt(btn.getAttribute('data-type'));
+      // Native anchor navigation for all standalone exercises; no JS/popup permission required.
+      if (!aiModeToggle.checked && typeId >= 1 && typeId <= 9) return;
+      if (btn.tagName === 'A') event.preventDefault();
+      // Writing opens a level selector; selecting a level navigates to that subpage.
+      if (!aiModeToggle.checked && typeId === 10) {
+        writingLevels.hidden = !writingLevels.hidden;
+        btn.setAttribute('aria-expanded', String(!writingLevels.hidden));
+        return;
+      }
+      if (typeId === 11 && !aiModeToggle.checked) aiModeToggle.checked = true;
       const isPressed = btn.getAttribute('aria-pressed') === 'true';
 
       if (typeId === 11 || typeId === 6) {
@@ -307,12 +345,13 @@
   function updatePracticeState() {
     const btn = document.getElementById('startPracticeBtn');
     const openPageBtn = document.getElementById('openPracticePageBtn');
-    openPageBtn.disabled = selectedTypes.length !== 1 || selectedTypes[0] === 11;
+    openPageBtn.disabled = !aiModeToggle.checked || selectedTypes.length !== 1 || selectedTypes[0] === 11;
     const hasWriting = selectedTypes.includes(10);
-    writingLevels.hidden = !hasWriting;
+    if (aiModeToggle.checked) writingLevels.hidden = !hasWriting;
     document.querySelector('[data-type="10"]').setAttribute('aria-expanded', String(hasWriting));
     const selectedWritingLevel = writingLevels.querySelector('input:checked');
-    if (!hasWriting && selectedWritingLevel) selectedWritingLevel.checked = false;
+    if (aiModeToggle.checked && !hasWriting && selectedWritingLevel) selectedWritingLevel.checked = false;
+    if (!aiModeToggle.checked) { btn.disabled = true; setStatus('Open an exercise tile to visit its page. Turn on AI mode to generate exercises.', 'Nhấn ô bài tập để mở trang riêng. Bật chế độ AI nếu muốn tạo bài bằng Dify.'); return; }
 
     if (hasWriting && !selectedWritingLevel) {
       btn.disabled = true;
