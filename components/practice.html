@@ -189,6 +189,9 @@
   </main>
 </div>
 
+<!-- ESP API bridge: must be loaded INSIDE this iframe and before practice handlers -->
+<script src="../js/config.js"></script>
+<script src="../js/bridge.js"></script>
 <script>
   'use strict';
   let practiceSessionToken = sessionStorage.getItem('dify_practice_token') || '';
