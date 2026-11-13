@@ -128,6 +128,19 @@
   .prose { overflow-wrap:anywhere; line-height:1.65; }
   .prose pre { overflow-x:auto; }
   @media (max-width:720px) { .top h1 { gap:10px; } .header-robot { padding-right:10px; } }
+
+  /* Practice subpage shortcuts — matching the original teal/mint palette */
+  .practice-pages-panel { margin: 18px clamp(16px,3.2vw,44px) 32px; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: #f9fefd; }
+  .practice-pages-panel h2 { margin: 0 0 6px; font-size: clamp(18px,2vw,24px); color: var(--teal); }
+  .practice-pages-panel p { margin: 0 0 14px; font-size: 14px; color: #3c5861; }
+  .practice-pages-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+  .practice-page-link { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 54px; padding: 11px 13px; border: 1px solid #b7dfd4; border-radius: 12px; background: var(--mint); color: var(--teal); font-weight: 700; text-decoration: none; }
+  .practice-page-link:hover, .practice-page-link:focus-visible { border-color: #008d73; background: #c7efe3; }
+  .practice-open-btn { border: 1px solid var(--teal); border-radius: 11px; background: #fff; color: var(--teal); padding: 10px 18px; font: inherit; font-weight: 750; cursor: pointer; }
+  .practice-open-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .practice-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+  @media(max-width:720px) { .practice-pages-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media(max-width:520px) { .practice-pages-grid { grid-template-columns: 1fr; } .practice-actions { width: 100%; } .practice-actions > button { flex: 1; } }
 </style>
 </head>
 <body>
@@ -175,7 +188,10 @@
     </div>
     <div class="foot">
       <button type="button" class="choice" data-type="11" aria-pressed="false"><span data-vi="Để chatbot tự chọn dạng phù hợp">Let the chatbot choose</span></button>
-      <button id="startPracticeBtn" class="go" type="button" disabled><span aria-hidden="true">✧</span> <span data-vi="Tạo bài tập">Generate Exercises</span></button>
+      <div class="practice-actions">
+        <button id="openPracticePageBtn" class="practice-open-btn" type="button" disabled><span data-vi="Mở trang bài đã chọn">Open Selected Page</span> ↗</button>
+        <button id="startPracticeBtn" class="go" type="button" disabled><span aria-hidden="true">✧</span> <span data-vi="Tạo bài tập">Generate Exercises</span></button>
+      </div>
     </div>
     <span id="practiceStatus" role="status"></span>
     <section id="practiceOutputBox" class="output-box" hidden>
@@ -184,6 +200,24 @@
         <input id="practiceReplyInput" type="text" aria-label="Answer or reply" data-vi-aria-label="Đáp án hoặc câu trả lời" placeholder="Enter your answer or reply..." data-vi-placeholder="Nhập đáp án hoặc câu trả lời...">
         <button id="practiceReplyBtn" type="button"><span data-vi="Gửi trả lời">Send Reply</span></button>
       </div>
+    </section>
+    <section class="practice-pages-panel" aria-labelledby="subpagesTitle">
+      <h2 id="subpagesTitle"><span data-vi="Mở các trang bài tập">Open Practice Pages</span></h2>
+      <p data-vi="Nhấn trực tiếp vào dạng bài để mở trang luyện tập riêng. Nút Tạo bài tập bên trên vẫn gọi Dify AI như trước.">Open any exercise page directly. Generate Exercises above still uses Dify AI.</p>
+      <nav class="practice-pages-grid" aria-label="Practice subpages">
+        <a class="practice-page-link" href="practice-pages/multiple-choice.html" target="_blank" rel="noopener noreferrer"><span data-vi="Trắc nghiệm">Multiple Choice</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/matching.html" target="_blank" rel="noopener noreferrer"><span data-vi="Ghép từ – định nghĩa">Matching</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/gap-fill.html" target="_blank" rel="noopener noreferrer"><span data-vi="Điền từ">Gap Fill</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/collocations.html" target="_blank" rel="noopener noreferrer"><span data-vi="Kết hợp từ">Collocations</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/word-choice-context.html" target="_blank" rel="noopener noreferrer"><span data-vi="Từ theo ngữ cảnh">Vocabulary in Context</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/mixed-practice.html" target="_blank" rel="noopener noreferrer"><span data-vi="Bài tập tổng hợp">Mixed Practice</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/listening.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện nghe">Listening</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/speaking.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện nói">Speaking</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/reading.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện đọc">Reading</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/writing-level-1.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện viết Level 1">Writing Level 1</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/writing-level-2.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện viết Level 2">Writing Level 2</span> <span aria-hidden="true">↗</span></a>
+        <a class="practice-page-link" href="practice-pages/writing-level-3.html" target="_blank" rel="noopener noreferrer"><span data-vi="Luyện viết Level 3">Writing Level 3</span> <span aria-hidden="true">↗</span></a>
+      </nav>
     </section>
   </main>
 </div>
@@ -272,6 +306,8 @@
 
   function updatePracticeState() {
     const btn = document.getElementById('startPracticeBtn');
+    const openPageBtn = document.getElementById('openPracticePageBtn');
+    openPageBtn.disabled = selectedTypes.length !== 1 || selectedTypes[0] === 11;
     const hasWriting = selectedTypes.includes(10);
     writingLevels.hidden = !hasWriting;
     document.querySelector('[data-type="10"]').setAttribute('aria-expanded', String(hasWriting));
@@ -290,6 +326,42 @@
       setStatus('Choose at least one exercise type.', 'Vui lòng chọn ít nhất một dạng bài tập.');
     }
   }
+
+  // Open a matching static HTML exercise page. Does not replace Dify generation.
+  const practicePagePaths = Object.freeze({
+    1: 'multiple-choice.html',
+    2: 'matching.html',
+    3: 'gap-fill.html',
+    4: 'collocations.html',
+    5: 'word-choice-context.html',
+    6: 'mixed-practice.html',
+    7: 'listening.html',
+    8: 'speaking.html',
+    9: 'reading.html'
+  });
+  document.getElementById('openPracticePageBtn').onclick = () => {
+    if (selectedTypes.length !== 1 || selectedTypes[0] === 11) {
+      setStatus('Select one exercise type to open its page.', 'Chọn một dạng bài để mở trang riêng.');
+      return;
+    }
+    const selected = selectedTypes[0];
+    let filename = practicePagePaths[selected];
+    if (selected === 10) {
+      const level = writingLevels.querySelector('input:checked');
+      if (!level) {
+        setStatus('Choose Writing Level 1, 2 or 3.', 'Vui lòng chọn Writing Level 1, 2 hoặc 3.');
+        return;
+      }
+      filename = 'writing-level-' + level.value + '.html';
+    }
+    if (!filename) return;
+    // A relative URL resolves against components/practice.html in GitHub Pages.
+    const destination = new URL('practice-pages/' + filename, window.location.href);
+    const tab = window.open(destination.href, '_blank', 'noopener,noreferrer');
+    if (!tab) {
+      setStatus('Allow pop-ups or use the links below.', 'Hãy cho phép mở tab mới hoặc dùng các liên kết bên dưới.');
+    }
+  };
 
   // Bấm nút bắt đầu tạo bài tập
   document.getElementById('startPracticeBtn').onclick = () => {
