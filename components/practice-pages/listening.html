@@ -444,4 +444,6 @@ async function openMeaning(target){
  body.replaceChildren(pronunciation,note,definition);
  }catch(error){if(request!==meaningRequest)return;body.replaceChildren(el('div','meaning-pronunciation','—'),el('div','meaning-definition',error.message),el('div','meaning-footer'));}
 }
-})();</script></body></html>
+})();</script>
+<script src="../../js/practice-result.js"></script>
+</body></html>
