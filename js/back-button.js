@@ -6,12 +6,17 @@
     var path = window.location.pathname;
     var inPracticeResult = /\/components\/practice-pages\/[^/]+\.html$/i.test(path);
     var inComponent = /\/components\/[^/]+\.html$/i.test(path);
+    var inPractice = /\/components\/practice\.html$/i.test(path) || inPracticeResult;
     var root = path.split('/components/')[0];
     if (!inComponent) root = path.replace(/\/[^/]*$/, '');
     root = (root || '') + '/';
 
     var style = document.createElement('style');
     style.textContent = '\n#esp-back-button{position:fixed!important;top:14px;left:14px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;padding:10px 15px;background:rgba(255,255,255,.97);color:#0d4658;border:1px solid #a4d8dc;border-radius:999px;box-shadow:0 3px 16px rgba(0,55,71,.15);font:600 14px/1.2 system-ui,-apple-system,Segoe UI,Arial,sans-serif;cursor:pointer;transition:background .15s,transform .15s}#esp-back-button:hover{background:#dff7f5;transform:translateY(-1px)}#esp-back-button:focus-visible{outline:3px solid #139a9e;outline-offset:3px}@media(max-width:600px){#esp-back-button{top:9px;left:9px;padding:9px 12px;font-size:13px}}@media print{#esp-back-button{display:none!important}}';
+    if (inPractice) {
+      // Practice headers have a robot/logo at top left. Keep Back below the content in a floating bottom corner.
+      style.textContent += '\n#esp-back-button{top:auto!important;bottom:18px!important;left:18px!important}@media(max-width:600px){#esp-back-button{top:auto!important;bottom:12px!important;left:12px!important}}';
+    }
     document.head.appendChild(style);
 
     var button = document.createElement('button');
