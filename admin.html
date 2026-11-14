@@ -10,7 +10,7 @@
 :root{--navy:#102d43;--teal:#087d86;--ink:#183349;--muted:#5e7280;--bg:#f4f8fa;--line:#dce7eb;--white:#fff;--danger:#a3293b;--green:#23734d;--amber:#936100}
 *{box-sizing:border-box}body{margin:0;font:15px/1.55 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.48;cursor:not-allowed}
 header{background:linear-gradient(110deg,#12334b,#086e79);color:white;padding:22px max(20px,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}header h1{font-size:21px;margin:0;font-weight:750}header p{margin:2px 0 0;color:#d0eced;font-size:13px}.chip{border:1px solid #8abcc3;border-radius:99px;padding:4px 11px;font-size:12px;color:white}
-main{max-width:1200px;margin:auto;padding:25px 20px 50px}section.panel,.stat,.modal-card{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 26px rgba(17,52,70,.035)}section.panel{padding:20px;margin-bottom:18px}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row.between{justify-content:space-between}.muted{color:var(--muted)}label{font-size:13px;font-weight:650;color:#35566b}input,select,textarea{background:#fff;color:#163349;border:1px solid #cbdde3;border-radius:9px;min-height:40px;padding:9px 11px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px #087d8621}input[type=password]{min-width:280px;flex:1}input[type=search]{width:285px;max-width:100%}select{min-width:146px}textarea{resize:vertical;width:100%;font:12px/1.55 ui-monospace,Consolas,monospace}button{border:0;border-radius:9px;padding:10px 14px;font-weight:650;background:var(--teal);color:#fff}button:hover:not(:disabled){filter:brightness(.96)}button.secondary{background:#e7f1f4;color:#215366}button.outline{background:transparent;color:var(--teal);border:1px solid #b7d6dc}button.danger{background:#fff0f0;color:var(--danger)}button.good{background:#e0f4e8;color:var(--green)}button.small{font-size:12px;padding:6px 9px}h2{font-size:17px;margin:0 0 14px}h3{font-size:15px;margin:0}.status{border-radius:20px;padding:3px 9px;font-size:12px;font-weight:700;display:inline-block}.status.pending{background:#fff2d8;color:#8c5a0a}.status.approved{background:#e1f4e9;color:#16603b}.status.rejected{background:#fde5e9;color:#a12a42}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{padding:16px}.stat b{display:block;font-size:26px;color:#14384e}.stat span{font-size:12px;color:var(--muted)}.filters{display:flex;gap:9px;flex-wrap:wrap}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:790px}th,td{padding:13px 10px;text-align:left;border-bottom:1px solid #ecf1f3;vertical-align:top}th{font-size:12px;color:#547083;background:#f6fafb}td{font-size:13px}td.title{font-weight:700;min-width:160px}.pill{background:#e8f2f5;color:#215567;font-size:12px;border-radius:6px;padding:4px 7px}.right{text-align:right}.notice{padding:12px 14px;border-radius:10px;background:#edf5f7;color:#315969;font-size:13px}.error{background:#fff1f1;color:#963244}.success{background:#edfaef;color:#24663f}.hidden{display:none!important}#msg{margin-bottom:16px;display:none}.pagination{margin-top:18px;display:flex;gap:12px;align-items:center;justify-content:flex-end}.modal{position:fixed;inset:0;z-index:100;background:#102b3bb3;padding:18px;display:flex;justify-content:center;align-items:center}.modal-card{width:min(860px,100%);max-height:96vh;overflow:auto;padding:22px}.fields{display:grid;grid-template-columns:2fr 1fr 2fr;gap:12px;margin:15px 0}.field{display:flex;flex-direction:column;gap:6px}.field input{width:100%}.modal-actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:15px;margin-top:13px}.mono{font-family:Consolas,monospace;font-size:12px;overflow-wrap:anywhere}footer{color:#66818d;font-size:12px;margin:20px 0;text-align:center}@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.fields{grid-template-columns:1fr}header{padding:18px}main{padding:15px}.modal-card{padding:15px}section.panel{padding:14px}}
+main{max-width:1200px;margin:auto;padding:25px 20px 50px}section.panel,.stat,.modal-card{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 26px rgba(17,52,70,.035)}section.panel{padding:20px;margin-bottom:18px}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row.between{justify-content:space-between}.muted{color:var(--muted)}label{font-size:13px;font-weight:650;color:#35566b}input,select,textarea{background:#fff;color:#163349;border:1px solid #cbdde3;border-radius:9px;min-height:40px;padding:9px 11px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px #087d8621}input[type=password]{min-width:280px;flex:1}input[type=search]{width:285px;max-width:100%}select{min-width:146px}textarea{resize:vertical;width:100%;font:12px/1.55 ui-monospace,Consolas,monospace}button{border:0;border-radius:9px;padding:10px 14px;font-weight:650;background:var(--teal);color:#fff}button:hover:not(:disabled){filter:brightness(.96)}button.secondary{background:#e7f1f4;color:#215366}button.outline{background:transparent;color:var(--teal);border:1px solid #b7d6dc}button.danger{background:#fff0f0;color:var(--danger)}button.good{background:#e0f4e8;color:var(--green)}button.small{font-size:12px;padding:6px 9px}h2{font-size:17px;margin:0 0 14px}h3{font-size:15px;margin:0}.status{border-radius:20px;padding:3px 9px;font-size:12px;font-weight:700;display:inline-block}.status.pending{background:#fff2d8;color:#8c5a0a}.status.approved{background:#e1f4e9;color:#16603b}.status.rejected{background:#fde5e9;color:#a12a42}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{padding:16px}.stat b{display:block;font-size:26px;color:#14384e}.stat span{font-size:12px;color:var(--muted)}.filters{display:flex;gap:9px;flex-wrap:wrap}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:790px}th,td{padding:13px 10px;text-align:left;border-bottom:1px solid #ecf1f3;vertical-align:top}th{font-size:12px;color:#547083;background:#f6fafb}td{font-size:13px}td.title{font-weight:700;min-width:160px}.pill{background:#e8f2f5;color:#215567;font-size:12px;border-radius:6px;padding:4px 7px}.right{text-align:right}.notice{padding:12px 14px;border-radius:10px;background:#edf5f7;color:#315969;font-size:13px}.error{background:#fff1f1;color:#963244}.success{background:#edfaef;color:#24663f}.hidden{display:none!important}#msg{margin-bottom:16px;display:none}.pagination{margin-top:18px;display:flex;gap:12px;align-items:center;justify-content:flex-end}.modal{position:fixed;inset:0;z-index:100;background:#102b3bb3;padding:18px;display:flex;justify-content:center;align-items:center}.modal-card{width:min(860px,100%);max-height:96vh;overflow:auto;padding:22px}.fields{display:grid;grid-template-columns:2fr 1fr 2fr;gap:12px;margin:15px 0}.field{display:flex;flex-direction:column;gap:6px}.field input{width:100%}.modal-actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:15px;margin-top:13px}.editor-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 14px}.editor-tabs button{padding:8px 13px}.editor-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}.editor-pane,.preview-pane{min-width:0;border:1px solid var(--line);border-radius:12px;padding:15px;background:#fff}.preview-pane{background:#f7fbfc}.editor-pane textarea{min-height:285px;font:14px/1.6 system-ui,sans-serif}.preview-body{background:white;border:1px solid #dce8ec;border-radius:12px;padding:20px;color:#1c3f53;line-height:1.85;white-space:normal;overflow-wrap:anywhere;max-height:58vh;overflow:auto}.preview-body p{margin:0 0 12px}.preview-body p:last-child{margin-bottom:0}.preview-body strong{color:#0f5060}.preview-body a{color:#087d86;text-decoration:underline;word-break:break-all}.preview-body img{max-width:100%;max-height:360px;object-fit:contain;border-radius:9px;margin:8px 0}.preview-title{font-size:18px;font-weight:750;color:#143e55;margin:0 0 12px}.preview-empty{color:#758b99;font-style:italic}.edit-help{color:#5e7280;font-size:12px;margin-top:5px}.note-box{background:#f1f8fa;padding:10px 12px;border-radius:9px;font-size:12px;color:#43677a}.advanced-json{margin-top:14px}.advanced-json textarea{font-family:Consolas,monospace;font-size:12px;min-height:260px}.modal-card{width:min(1220px,100%)}.mono{font-family:Consolas,monospace;font-size:12px;overflow-wrap:anywhere}footer{color:#66818d;font-size:12px;margin:20px 0;text-align:center}@media(max-width:860px){.editor-layout{grid-template-columns:1fr}}@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.fields{grid-template-columns:1fr}header{padding:18px}main{padding:15px}.modal-card{padding:15px}section.panel{padding:14px}}
 </style>
 </head>
 <body>
@@ -29,12 +29,15 @@ main{max-width:1200px;margin:auto;padding:25px 20px 50px}section.panel,.stat,.mo
 </div>
 <footer>ESP AI Chatbot · Quản trị riêng biệt với giao diện học viên</footer>
 </main>
-<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><div class="row between"><h2 id="modalTitle">Chi tiết học liệu</h2><button class="secondary small" id="closeModal">Đóng ✕</button></div><div id="recordMeta" class="muted mono"></div><div class="fields"><div class="field"><label for="editTitle">Tiêu đề</label><input id="editTitle" maxlength="200"></div><div class="field"><label for="editLevel">Trình độ</label><input id="editLevel" maxlength="60"></div><div class="field"><label for="editSubject">Chủ đề / Dạng bài</label><input id="editSubject" maxlength="200"></div></div><div class="field"><label for="editJson">Nội dung học liệu (JSON)</label><textarea id="editJson" rows="15" spellcheck="false"></textarea><span class="muted" style="font-size:12px">Chỉnh sửa dữ liệu JSON cần thận trọng. Với Practice, phải giữ trường <code>answer</code> để có thể chấm bài.</span></div><div class="modal-actions"><button class="secondary" id="saveBtn">Lưu chỉnh sửa → Chờ duyệt</button><button class="danger" id="rejectBtn">Từ chối</button><button class="outline" id="pendingBtn">Chờ duyệt</button><button class="good" id="approveBtn">Duyệt học liệu</button></div></div></div>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><div class="row between"><h2 id="modalTitle">Chi tiết học liệu</h2><button class="secondary small" id="closeModal">Đóng ✕</button></div><div id="recordMeta" class="muted mono"></div><div class="fields"><div class="field"><label for="editTitle">Tiêu đề</label><input id="editTitle" maxlength="200"></div><div class="field"><label for="editLevel">Trình độ</label><input id="editLevel" maxlength="60"></div><div class="field"><label for="editSubject">Chủ đề / Dạng bài</label><input id="editSubject" maxlength="200"></div></div><div class="editor-tabs" role="tablist"><button class="secondary" id="formTab" type="button">✎ Form chỉnh sửa</button><button class="outline" id="jsonTab" type="button">{ } JSON nâng cao</button></div>
+<div id="formEditor" class="editor-layout"><div class="editor-pane"><h3 id="specificTitle">Chỉnh sửa nội dung</h3><p class="muted" style="font-size:13px" id="specificHint"></p><div id="specificFields"></div><p class="edit-help">Bản xem trước cập nhật khi bạn gõ. Nút Lưu sẽ đồng bộ cả nội dung học viên xem và dữ liệu kho.</p></div><div class="preview-pane"><div class="row between"><h3>👁 Xem trước như học viên</h3><span class="pill" id="previewKind"></span></div><p class="muted" style="font-size:12px">Nội dung được diễn giải gần giống giao diện học viên (không thực thi script, không gọi AI).</p><div class="preview-body" id="studentPreview" aria-live="polite"></div></div></div>
+<div id="jsonEditor" class="advanced-json hidden"><div class="note-box">Chế độ nâng cao: sửa toàn bộ JSON gốc. Hãy giữ nguyên cấu trúc dữ liệu và trường <code>answer</code> của Practice.</div><div class="field"><label for="editJson">JSON học liệu</label><textarea id="editJson" rows="16" spellcheck="false"></textarea></div></div>
+<div class="modal-actions"><button class="secondary" id="saveBtn">Lưu chỉnh sửa → Chờ duyệt</button><button class="danger" id="rejectBtn">Từ chối</button><button class="outline" id="pendingBtn">Chờ duyệt</button><button class="good" id="approveBtn">Duyệt học liệu</button></div></div></div>
 <script>
 (()=>{'use strict';
 const API='https://super-bird-661f.nguyenphanhienanh451992.workers.dev/admin/api';
 const $=id=>document.getElementById(id);
-let adminToken='',page=1,found=0,current=null,busy=false;
+let adminToken='',page=1,found=0,current=null,busy=false,editable=null,viewMode='form',sectionBlocks=null;
 const labels={meaning:'Tra nghĩa',flashcard:'Flashcard',practice:'Practice',context:'Ngữ cảnh'};
 function message(text,type=''){const n=$('msg');n.textContent=text;n.className='notice '+type;n.style.display='block';}
 function clearMessage(){$('msg').style.display='none';}
@@ -43,7 +46,7 @@ async function api(action,data={}){
   if(!adminToken)throw Error('Chưa đăng nhập quản trị.');
   const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),25000);
   try{
-    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+adminToken},body:JSON.stringify({action,data}),signal:ctl.signal,cache:'no-store',redirect:'error'});
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+adminToken},body:JSON.stringify({action,data}),signal:ctl.signal,cache:'no-store',redirect:'manual'});
     const payload=await r.json().catch(()=>({ok:false,error:'Máy chủ không trả JSON hợp lệ.'}));
     if(!r.ok||!payload.ok)throw Error(payload.error||'HTTP '+r.status);
     return payload.data;
@@ -57,11 +60,149 @@ function renderRows(items){const tbody=$('results');tbody.replaceChildren();if(!
 }
 async function load(){const result=await api('list',{search:$('search').value.trim(),kind:$('kind').value,status:$('status').value,page});found=result.total;renderRows(result.items||[]);const start=found?(page-1)*20+1:0;const end=Math.min(found,page*20);$('pageLabel').textContent=start+'–'+end+' / '+found;$('prevBtn').disabled=page<=1;$('nextBtn').disabled=page*20>=found;}
 async function refresh(){await Promise.all([load(),loadStats()]);}
-async function openItem(row){const r=await api('get',{contentKey:row.contentKey,ownerHash:row.ownerHash});current=r.item;$('modalTitle').textContent=(current.title||'Học liệu')+' · '+(labels[current.kind]||current.kind);$('recordMeta').textContent='Loại: '+current.kind+' | Trạng thái: '+current.status+' | Tạo: '+current.createdAt+' | Chủ sở hữu: '+current.ownerHash.slice(0,12)+'…';$('editTitle').value=current.title||'';$('editLevel').value=current.level||'';$('editSubject').value=current.subject||'';try{$('editJson').value=JSON.stringify(JSON.parse(current.payloadJson),null,2);}catch(_){$('editJson').value=current.payloadJson||'';}$('modal').classList.remove('hidden');}
-function modalOff(){current=null;$('modal').classList.add('hidden');}
+// The stored payload is the student-facing API response, not a fixed vocabulary schema.
+// Only edit the fields this repository actually stores; preserve all unknown fields.
+function htmlEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function studentMarkdown(raw){
+  let t=htmlEscape(raw||'');
+  // Safe text first; links restricted to HTTPS, without injecting untrusted HTML.
+  t=t.replace(/!\[([^\]\n]{0,100})\]\((https:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img src="'+url+'" alt="'+alt+'" loading="lazy">');
+  t=t.replace(/\[([^\]\n]{1,100})\]\((https:\/\/[^\s)]+)\)/g,(_,label,url)=>'<a href="'+url+'" target="_blank" rel="noopener noreferrer">'+label+'</a>');
+  t=t.replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<em>$2</em>');
+  return '<p>'+t.split(/\n\s*\n/).map(x=>x.replace(/\n/g,'<br>')).join('</p><p>')+'</p>';
+}
+function fieldHTML(id,label,value,help,rows=0){
+  const group=elem('div');group.className='field';group.style.marginBottom='13px';
+  const lab=elem('label',label);lab.htmlFor=id;const el=elem(rows?'textarea':'input');el.id=id;el.value=String(value??'');
+  if(rows)el.rows=rows; else el.maxLength=1000;
+  group.append(lab,el);if(help)group.append(elem('span',help,'edit-help'));
+  return {group,el};
+}
+function contentValue(obj){
+  if(current.kind==='practice')return String(obj.answer??'');
+  if(current.kind==='context')return '';
+  return String(obj.bodyText??obj.answer??obj.rawAnswer??'');
+}
+function renderPreview(){
+  if(!current||!editable)return;
+  const target=$('studentPreview');target.replaceChildren();
+  const h=elem('div',$('editTitle').value||current.title||'Học liệu','preview-title');target.append(h);
+  if(current.kind==='context'){
+    const labels=[['word','🔤 Từ'],['part_of_speech','🏷️ Từ loại'],['bre_ipa','🔊 Phiên âm'],['meaning_en','💡 Nghĩa tiếng Anh'],['meaning_vi','🇻🇳 Nghĩa tiếng Việt'],['context_note_vi','📘 Ghi chú ngữ cảnh']];
+    for(const [key,label] of labels){if(!editable[key])continue;const p=elem('p');p.append(elem('strong',label+': '),document.createTextNode(String(editable[key])));target.append(p);}
+    return;
+  }
+  const raw=contentValue(editable);
+  if(!raw.trim())target.append(elem('div','Chưa có nội dung để xem trước.','preview-empty'));
+  else {const node=elem('div');node.innerHTML=studentMarkdown(raw);target.append(node);}
+  if(current.kind==='flashcard'&&editable.imageDataUrl&&/^data:image\/(?:png|jpeg|webp);base64,/i.test(editable.imageDataUrl)){
+    const pic=document.createElement('img');pic.src=editable.imageDataUrl;pic.alt='Hình minh họa Flashcard';pic.style='max-width:100%;max-height:280px;border-radius:10px';target.append(pic);
+  }
+}
+function splitMeaningSections(text){
+  const raw=String(text||'');
+  const marks=/^(?:🔤|🏷️|🔊|💡|📘|📝|🔗|⚠️|🖼️?)\s*\*\*[^\n]{1,65}?\*\*/gmu;
+  const starts=[...raw.matchAll(marks)].map(m=>m.index);
+  if(starts.length<2)return null;
+  const parts=[];
+  if(starts[0]>0&&raw.slice(0,starts[0]).trim())parts.push({name:'Giới thiệu / Nội dung khác',raw:raw.slice(0,starts[0])});
+  for(let i=0;i<starts.length;i++){
+    const chunk=raw.slice(starts[i],starts[i+1]??raw.length);
+    const label=chunk.split('\n',1)[0].replace(/\*/g,'').trim();
+    parts.push({name:label,raw:chunk});
+  }
+  return parts;
+}
+function splitPracticeSections(text){
+  const raw=String(text||'');
+  const marks=/^(?:#{1,3}\s*)?(?:(?:Question|Câu hỏi|Câu)\s*\d+\s*[:.)]|\d+[.)]\s+).*/gmi;
+  const starts=[...raw.matchAll(marks)].map(m=>m.index);
+  if(starts.length<2)return null;
+  const parts=[];
+  if(starts[0]>0)parts.push({name:'Hướng dẫn đầu bài',raw:raw.slice(0,starts[0])});
+  for(let i=0;i<starts.length;i++)parts.push({name:'Câu hỏi '+(i+1),raw:raw.slice(starts[i],starts[i+1]??raw.length)});
+  return parts;
+}
+function updateContentFromForm(){
+  if(!editable||viewMode!=='form')return;
+  if(current.kind==='context'){
+    for(const k of ['word','part_of_speech','part_of_speech_vi','bre_ipa','meaning_en','meaning_vi','context_note_vi','audio_url']){
+      const el=$('field_'+k);if(el)editable[k]=el.value;
+    }
+  }else{
+    const value=sectionBlocks ? sectionBlocks.map((b,i)=>$('field_part_'+i)?.value??b.raw).join('') : ($('field_main')?.value??'');
+    if(current.kind==='practice'){editable.answer=value;}
+    else{
+      // Dify frontend reads bodyText, answer and rawAnswer in different pages.
+      editable.bodyText=value;editable.answer=value;editable.rawAnswer=value;
+      editable.headerText=$('editTitle').value;
+      if(typeof editable.word==='string')editable.word=$('editTitle').value;
+    }
+  }
+  renderPreview();
+}
+function buildSpecificForm(){
+  const wrap=$('specificFields');wrap.replaceChildren();sectionBlocks=null;const kind=current.kind;
+  $('previewKind').textContent=labels[kind]||kind;
+  $('specificTitle').textContent=kind==='practice'?'Nội dung bài tập Practice':kind==='context'?'Tra từ theo ngữ cảnh':kind==='meaning'?'Nội dung tra nghĩa':'Nội dung Flashcard';
+  $('specificHint').textContent=kind==='practice'?'Chỉnh sửa đề bài như học viên nhìn thấy. Giữ cả câu hỏi và lựa chọn; hệ thống dùng answer để phục vụ chấm bài.':kind==='context'?'Mỗi thông tin có ô riêng, dễ sửa nghĩa từ theo ngữ cảnh.':'Chỉnh sửa bài giải thích/Flashcard ở dạng dễ đọc thay vì chuỗi JSON với ký tự \n.';
+  if(kind==='context'){
+    const fields=[['word','Từ tiếng Anh',1],['part_of_speech','Từ loại',1],['part_of_speech_vi','Từ loại tiếng Việt',1],['bre_ipa','Phiên âm',1],['meaning_en','Nghĩa tiếng Anh',3],['meaning_vi','Nghĩa tiếng Việt',3],['context_note_vi','Ghi chú theo ngữ cảnh',5],['audio_url','URL phát âm',2]];
+    for(const [key,label,rows] of fields){const f=fieldHTML('field_'+key,label,editable[key],null,rows>1?rows:0);f.el.addEventListener('input',updateContentFromForm);wrap.append(f.group);}
+  }else{
+    sectionBlocks=kind==='practice'?splitPracticeSections(contentValue(editable)):splitMeaningSections(contentValue(editable));
+    if(sectionBlocks){
+      wrap.append(elem('div','Đã tự tách nội dung thành từng mục. Bạn có thể sửa riêng từng mục; giữ nhãn đầu mục để định dạng hiển thị cho học viên được giữ nguyên.','note-box'));
+      for(let i=0;i<sectionBlocks.length;i++){const b=sectionBlocks[i];const f=fieldHTML('field_part_'+i,b.name,b.raw,'Sửa nội dung mục này; giữ tiêu đề hoặc số câu nếu có.',Math.max(3,Math.min(10,b.raw.split('\n').length+1)));f.el.addEventListener('input',updateContentFromForm);wrap.append(f.group);}
+    }else{
+    const f=fieldHTML('field_main',kind==='practice'?'Đề bài và hướng dẫn cho học viên':'Giải thích hiển thị cho học viên',contentValue(editable),kind==='practice'?'Có thể sửa trực tiếp nội dung Markdown: câu hỏi, lựa chọn, hướng dẫn.':'Giữ các nhãn như Word, Meaning, Example; có thể sửa nội dung bình thường.',16);
+    f.el.addEventListener('input',updateContentFromForm);wrap.append(f.group);
+    }
+    if(kind==='flashcard'&&editable.vocabulary&&Object.keys(editable.vocabulary).length){
+      wrap.append(elem('div','Bản ghi còn có trường vocabulary. Khi cần sửa các trường dữ liệu có cấu trúc, dùng tab JSON nâng cao.','note-box'));
+    }
+  }
+  renderPreview();
+}
+function showMode(mode){
+  if(mode==='json'&&viewMode==='form'&&editable){updateContentFromForm();$('editJson').value=JSON.stringify(editable,null,2);}
+  if(mode==='form'&&viewMode==='json'){
+    try{const obj=JSON.parse($('editJson').value);if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Phải là JSON object');editable=obj;}
+    catch(err){message('Không thể chuyển sang Form: '+err.message,'error');return;}
+    buildSpecificForm();
+  }
+  viewMode=mode;
+  $('formEditor').classList.toggle('hidden',mode!=='form');$('jsonEditor').classList.toggle('hidden',mode!=='json');
+  $('formTab').className=mode==='form'?'secondary':'outline';$('jsonTab').className=mode==='json'?'secondary':'outline';
+}
+async function openItem(row){
+  const r=await api('get',{contentKey:row.contentKey,ownerHash:row.ownerHash});current=r.item;
+  $('modalTitle').textContent=(current.title||'Học liệu')+' · '+(labels[current.kind]||current.kind);
+  $('recordMeta').textContent='Loại: '+current.kind+' | Trạng thái: '+current.status+' | Tạo: '+current.createdAt+' | Chủ sở hữu: '+current.ownerHash.slice(0,12)+'…';
+  $('editTitle').value=current.title||'';$('editLevel').value=current.level||'';$('editSubject').value=current.subject||'';
+  try{editable=JSON.parse(current.payloadJson);if(!editable||typeof editable!=='object'||Array.isArray(editable))throw Error('Không phải JSON object');}
+  catch(_){editable={answer:String(current.payloadJson||'')};}
+  buildSpecificForm();viewMode='form';showMode('form');$('modal').classList.remove('hidden');
+}
+function modalOff(){current=null;editable=null;sectionBlocks=null;$('modal').classList.add('hidden');}
 function actGuard(flag){busy=flag;for(const id of ['approveBtn','rejectBtn','pendingBtn','saveBtn'])$(id).disabled=flag;}
 async function changeStatus(status){if(!current||busy)return;const label={approved:'DUYỆT',rejected:'TỪ CHỐI',pending:'CHUYỂN VỀ CHỜ DUYỆT'}[status];if(!confirm('Xác nhận '+label+' học liệu "'+current.title+'"?'))return;actGuard(true);try{await api('setStatus',{contentKey:current.contentKey,ownerHash:current.ownerHash,status});modalOff();await refresh();message('Đã cập nhật trạng thái thành '+status+'.','success');}catch(e){message(e.message,'error');}finally{actGuard(false);}}
-async function save(){if(!current||busy)return;try{const parsed=JSON.parse($('editJson').value);if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw Error('Nội dung JSON phải là object.');if(current.kind==='practice'&&(!parsed.answer||typeof parsed.answer!=='string'))throw Error('Practice phải có trường answer.');}catch(e){message('JSON không hợp lệ: '+e.message,'error');return;}if(!confirm('Lưu chỉnh sửa? Học liệu sẽ trở về trạng thái chờ duyệt.'))return;actGuard(true);try{await api('save',{contentKey:current.contentKey,ownerHash:current.ownerHash,title:$('editTitle').value,level:$('editLevel').value,subject:$('editSubject').value,payloadJson:$('editJson').value});modalOff();await refresh();message('Đã lưu thay đổi. Học liệu trở về trạng thái pending.','success');}catch(e){message(e.message,'error');}finally{actGuard(false);}}
+async function save(){
+  if(!current||busy)return;
+  let parsed;
+  try{
+    if(viewMode==='form'){updateContentFromForm();parsed=editable;}
+    else parsed=JSON.parse($('editJson').value);
+    if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw Error('Nội dung phải là JSON object.');
+    if(current.kind==='practice'&&(!parsed.answer||typeof parsed.answer!=='string'))throw Error('Practice phải có trường answer.');
+    if(['meaning','flashcard'].includes(current.kind)&&!String(parsed.bodyText||parsed.answer||'').trim())throw Error('Nội dung học viên xem không được trống.');
+  }catch(e){message('Nội dung không hợp lệ: '+e.message,'error');return;}
+  if(!confirm('Lưu chỉnh sửa? Học liệu sẽ trở về trạng thái chờ duyệt.'))return;
+  actGuard(true);
+  try{await api('save',{contentKey:current.contentKey,ownerHash:current.ownerHash,title:$('editTitle').value,level:$('editLevel').value,subject:$('editSubject').value,payloadJson:JSON.stringify(parsed)});modalOff();await refresh();message('Đã lưu thay đổi. Học liệu trở về trạng thái pending.','success');}
+  catch(e){message(e.message,'error');}finally{actGuard(false);}
+}
 $('loginForm').addEventListener('submit',async e=>{e.preventDefault();adminToken=$('token').value.trim();clearMessage();try{await refresh();$('token').value='';setSession(true);message('Đã kết nối kho học liệu.','success');}catch(err){adminToken='';message('Không thể đăng nhập: '+err.message,'error');}});
 $('logoutBtn').onclick=()=>{adminToken='';current=null;setSession(false);$('token').value='';$('results').replaceChildren();message('Đã đăng xuất.','success');};
 $('filterBtn').onclick=()=>{page=1;load().catch(e=>message(e.message,'error'));};$('search').addEventListener('keydown',e=>{if(e.key==='Enter'){$('filterBtn').click();}});
@@ -69,6 +210,8 @@ $('refreshBtn').onclick=()=>refresh().catch(e=>message(e.message,'error'));
 $('prevBtn').onclick=()=>{if(page>1){page--;load().catch(e=>message(e.message,'error'));}};
 $('nextBtn').onclick=()=>{if(page*20<found){page++;load().catch(e=>message(e.message,'error'));}};
 $('closeModal').onclick=modalOff;$('modal').addEventListener('click',e=>{if(e.target===$('modal'))modalOff();});window.addEventListener('keydown',e=>{if(e.key==='Escape')modalOff();});
+$('formTab').onclick=()=>showMode('form');$('jsonTab').onclick=()=>showMode('json');
+for(const id of ['editTitle','editLevel','editSubject'])$(id).addEventListener('input',()=>{if(current&&viewMode==='form')renderPreview();});
 $('approveBtn').onclick=()=>changeStatus('approved');$('rejectBtn').onclick=()=>changeStatus('rejected');$('pendingBtn').onclick=()=>changeStatus('pending');$('saveBtn').onclick=save;
 })();
 </script>
