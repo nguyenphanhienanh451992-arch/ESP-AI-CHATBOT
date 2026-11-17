@@ -102,7 +102,8 @@
 .esp-tabs a:hover,.esp-tabs a:focus-visible{background:#f0e9fa}
 .esp-tabs a[aria-current="page"]{background:#542a80;color:white}
 @media(max-width:620px){.esp-tabs{margin:9px 12px 15px;gap:3px}.esp-tabs a{flex:1 1 30%;font-size:12px;padding:9px 4px;white-space:normal;text-align:center}}
-</style></head><body><nav class="esp-tabs" aria-label="Điều hướng ESP AI Chatbot">
+</style><script defer src="../js/learning-tracker.js"></script>
+</head><body><nav class="esp-tabs" aria-label="Điều hướng ESP AI Chatbot">
   <a href="../index.html">⌂ <span>Home</span></a>
   <a href="../assistant.html">✦ <span>AI Assistant</span></a>
   <a href="meaning.html" aria-current="page">▤ <span>Word Lookup</span></a>
@@ -753,4 +754,5 @@ $('download').onclick=exportPNG;
 
 window.addEventListener('error',e=>showStatus('Lỗi trên trang: '+e.message));
 window.addEventListener('unhandledrejection',e=>showStatus('Không hoàn tất thao tác: '+(e.reason?.message||e.reason)));
-</script></body></html>
+</script><a href="../progress.html" aria-label="Xem tiến độ học tập" style="position:fixed;right:16px;bottom:16px;z-index:90;padding:10px 16px;border-radius:24px;background:#102d43;color:white;font:700 13px system-ui,sans-serif;text-decoration:none;box-shadow:0 5px 18px #102d4330">▥ My Progress</a>
+</body></html>
