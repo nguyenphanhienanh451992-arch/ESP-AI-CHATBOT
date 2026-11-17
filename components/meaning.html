@@ -265,37 +265,77 @@ $('imageFrame').onchange=()=>{
  data.image_frame=$('imageFrame').value;updateImageFrame();
  
 };
+// GitHub Pages media: prefer stable, teacher-approved images over expiring Dify links.
+// Example: intersection -> ../assets/vocabulary/intersection.png / .jpg / .jpeg.
+function imageFileStem(word){
+ return String(word||'').normalize('NFKD').toLowerCase().trim()
+  .replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ')
+  .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+function vocabularyImageCandidates(word){
+ const stem=imageFileStem(word);
+ if(!stem)return [];
+ return ['png','jpg','jpeg'].map(ext=>`../assets/vocabulary/${stem}.${ext}`);
+}
 async function loadPicture(src){
- const version=++loadVersion,img=$('illustration'),isVehicle=data.word.trim().toLowerCase()==='vehicle';
- stopCaptionMotion();
- document.querySelector('.visual').classList.remove('image-ready','image-panel');
- document.querySelector('.stage').classList.remove('image-rectangle');
- document.querySelector('.stage').style.removeProperty('--image-ratio');
- img.hidden=true;$('imageProblem').hidden=true;img.removeAttribute('src');showStatus(message('Loading illustration…','Đang tải hình ảnh…'));
- const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),10000);
- try{
-  let embedded=src||(isVehicle?DEFAULT_IMAGE:'');if(!embedded)throw Error('Chưa có ảnh cho từ này');
-  if(embedded.startsWith('https://')){
-   const res=await fetch(embedded,{mode:'cors',signal:controller.signal});if(!res.ok)throw Error('HTTP '+res.status);
-   const blob=await res.blob();if(!blob.type.startsWith('image/'))throw Error('URL không trả về ảnh');
-   embedded=await new Promise((ok,no)=>{const f=new FileReader();f.onload=()=>ok(f.result);f.onerror=no;f.readAsDataURL(blob);});
-  }
-  if(version!==loadVersion)return;img.src=embedded;await img.decode();if(version===loadVersion){img.hidden=false;updateImageFrame();}
-  if(version===loadVersion){$('imageProblem').hidden=true;showStatus(contentMessage());}
- }catch(e){
+ const version=++loadVersion, img=$('illustration');
+ const isVehicle=String(data?.word||'').trim().toLowerCase()==='vehicle';
+ const visual=document.querySelector('.visual'), stage=document.querySelector('.stage');
+ stopCaptionMotion();visual.classList.remove('image-ready','image-panel');
+ stage.classList.remove('image-rectangle');stage.style.removeProperty('--image-ratio');
+ img.hidden=true;img.removeAttribute('src');$('imageProblem').hidden=true;
+ showStatus(message('Loading illustration…','Đang tải hình ảnh…'));
+ const localUrls=vocabularyImageCandidates(data?.word);
+ // Test each filename in order; missing files return 404 and are skipped silently.
+ const candidateUrls=[...localUrls];
+ if(src&&typeof src==='string'&&!candidateUrls.includes(src))candidateUrls.push(src);
+ if(isVehicle&&!src)candidateUrls.push(DEFAULT_IMAGE);
+ for(const candidate of candidateUrls){
   if(version!==loadVersion)return;
-  // A cross-origin fetch may fail while the same URL works in an img element.
-  if(src){
-   try{
-    img.removeAttribute('crossorigin');img.src=src;await img.decode();if(version===loadVersion){img.hidden=false;updateImageFrame();}
-    if(version===loadVersion){$('imageProblem').hidden=true;showStatus(contentMessage()+' Đã tải ảnh chatbot.');}
-   }catch(imageError){
-    if(version!==loadVersion)return;img.removeAttribute('src');img.hidden=true;$('imageProblem').hidden=false;$('imageProblemText').textContent='Không tải được ảnh chatbot. Đường dẫn có thể hết hạn hoặc bị từ chối truy cập. Bạn có thể chọn ảnh trên máy để xem tạm thời. Ảnh chỉ tồn tại trong phiên này; muốn lưu lâu dài cần R2.';
-    showStatus(contentMessage()+' Không tải được ảnh chatbot. Hãy lấy URL ảnh mới từ chatbot hoặc chọn tệp ảnh.');
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),7000);
+  try{
+   let displayUrl=candidate;
+   if(!candidate.startsWith('data:image/')){
+    // Fetch first to obtain an image data URL for the existing PNG export feature.
+    // Same-origin GitHub Pages images are readable; external Dify URLs may reject CORS.
+    const response=await fetch(candidate,{signal:controller.signal});
+    if(!response.ok)throw Error('HTTP '+response.status);
+    const blob=await response.blob();
+    if(!blob.type.startsWith('image/'))throw Error('Not an image');
+    displayUrl=await new Promise((resolve,reject)=>{
+     const reader=new FileReader();reader.onload=()=>resolve(reader.result);
+     reader.onerror=reject;reader.readAsDataURL(blob);
+    });
    }
-  }else if(isVehicle){img.src=DEFAULT_IMAGE;await img.decode();if(version===loadVersion){img.hidden=false;updateImageFrame();}if(version===loadVersion){$('imageProblem').hidden=true;showStatus(contentMessage()+' JSON chưa có ảnh; đang dùng ảnh mẫu.');}}
-  else{img.removeAttribute('src');img.hidden=true;$('imageProblem').hidden=false;$('imageProblemText').textContent=message('No illustration available.','Chưa có hình minh họa.');showStatus(contentMessage());}
- }finally{clearTimeout(timeout);}
+   if(version!==loadVersion)return;
+   img.src=displayUrl;await img.decode();
+   if(version!==loadVersion)return;
+   img.hidden=false;updateImageFrame();$('imageProblem').hidden=true;
+   data.image_url=candidate;
+   showStatus(contentMessage()+(localUrls.includes(candidate)?' · Ảnh từ thư viện GitHub.':''));
+   return;
+  }catch(error){
+   if(version!==loadVersion)return;
+   // Some external image servers prevent fetch() but allow <img> rendering.
+   // Do NOT retry this way for missing local GitHub images.
+   if(/^https:\/\//i.test(candidate)&&!localUrls.includes(candidate)){
+    try{
+     img.removeAttribute('crossorigin');img.src=candidate;
+     await Promise.race([img.decode(),new Promise((_,reject)=>setTimeout(()=>reject(Error('Image timeout')),4500))]);
+     if(version!==loadVersion)return;
+     img.hidden=false;updateImageFrame();$('imageProblem').hidden=true;
+     data.image_url=candidate;showStatus(contentMessage());return;
+    }catch(ignore){}
+   }
+  }finally{clearTimeout(timer);}
+ }
+ if(version!==loadVersion)return;
+ img.removeAttribute('src');img.hidden=true;$('imageProblem').hidden=false;
+ $('imageProblemText').textContent=message(
+  'No valid illustration found. Upload a PNG/JPG/JPEG to assets/vocabulary/ or choose a local image.',
+  'Chưa tìm thấy ảnh hợp lệ. Hãy tải PNG/JPG/JPEG lên assets/vocabulary/ hoặc chọn ảnh từ máy.');
+ showStatus(contentMessage()+' '+message('Illustration unavailable.','Chưa có ảnh minh họa.'));
 }
 function contentMessage(){const missing=[];if(!data.collocations.length)missing.push('Common collocations');if(!data.usage_note.trim())missing.push('Usage note');if(!data.word_family.length&&!data.word_family_note)missing.push('Word family');return missing.length?message('Unavailable: ','Chưa có: ')+missing.join(', ')+'.':message('Entry loaded.','Đã hiển thị đủ nội dung.');}
 window.setVocabulary=function(d){d=normalize(d);validate(d);pronouncing=false;stopEffectSounds();$('page').hidden=false;$('toolbar').hidden=false;$('lookupOptions').hidden=false;for(const id of ['imageFile','audioFile','count'])$(id).disabled=false;if(audio){audio.pause();audio=null;}if('speechSynthesis'in window) speechSynthesis.cancel();data=JSON.parse(JSON.stringify(d));for(const [id,key]of Object.entries({word:'word',pos:'part_of_speech',ipa:'ipa',meaning:'meaning_vi',definition:'definition_en',note:'usage_note'}))$(id).textContent=data[key];$('caption').textContent=data.word.toUpperCase();$('illustration').alt=data.word;$('count').value=data.object_count;renderList('examples',data.examples,true);renderList('collocations',data.collocations,false);$('family').replaceChildren();data.word_family.forEach(f=>{const line=node('div','family-line');line.append(node('span','family-word',f.word),node('span','pill',f.part_of_speech));$('family').append(line,node('p','family-meaning',f.meaning_vi),...(f.example?[node('div','family-example',f.example)]:[]));});if(!data.usage_note.trim())$('note').textContent=message('No usage note available.','Chưa có ghi chú cách dùng.');if(!data.word_family.length)$('family').append(node('p','missing',data.word_family_note||message('No word family available.','Chưa có thông tin họ từ phù hợp.')));syncMotion();showStatus(contentMessage());loadPicture(data.image_url);};
@@ -636,7 +676,11 @@ const message=(en,vi)=>interfaceLanguage==='vi'?vi:en;
  });
 function readLocal(file){return new Promise((ok,no)=>{const f=new FileReader();f.onload=()=>ok(f.result);f.onerror=no;f.readAsDataURL(file);});}
 $('chooseImage').onclick=()=>{$('imageFile').click();};
-$('imageFile').onchange=async e=>{try{if(!e.target.files[0])return;data.image_url=await readLocal(e.target.files[0]);await loadPicture(data.image_url);}catch(e){showStatus('Không đọc được ảnh.');}};
+$('imageFile').onchange=async e=>{try{if(!e.target.files[0])return;data.image_url=await readLocal(e.target.files[0]);const picked=data.image_url; // Local file is intentionally chosen by the learner.
+ const version=++loadVersion, img=$('illustration');
+ try {img.src=picked;await img.decode();if(version!==loadVersion)return;img.hidden=false;updateImageFrame();$('imageProblem').hidden=true;showStatus(contentMessage()+' Đã chọn ảnh từ máy (chỉ trong phiên này).');}
+ catch(err){if(version===loadVersion)showStatus('Không đọc được ảnh.');}
+ }catch(e){showStatus('Không đọc được ảnh.');}};
 $('audioFile').onchange=async e=>{if(e.target.files[0]){data.audio_url=await readLocal(e.target.files[0]);showStatus('Đã nhận file phát âm tạm thời (chưa lưu lên máy chủ).');}};
 $('count').onchange=()=>{const n=Number($('count').value);if(!Number.isInteger(n)||n<1){showStatus('Số đối tượng phải ≥ 1');return;}data.object_count=n;syncMotion();};
 /* Dependency-free PNG renderer for this page: uses actual DOM geometry and text line positions.
