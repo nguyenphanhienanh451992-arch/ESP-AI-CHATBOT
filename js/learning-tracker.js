@@ -5,7 +5,7 @@
  const now=()=>new Date().toISOString();
  const day=(iso)=>{try{return new Intl.DateTimeFormat('en-CA',{timeZone:DAYZONE,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(iso));}catch{return String(iso).slice(0,10);}};
  const read=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.events)?o:{version:1,events:[]};}catch{return {version:1,events:[]};}};
- const emit=(type,label='')=>{if(!allowed.has(type))return false;const obj=read();const clean=String(label).trim().slice(0,120);obj.events.push({type,label:clean,time:now()});if(obj.events.length>MAX_EVENTS)obj.events=obj.events.slice(-MAX_EVENTS);try{localStorage.setItem(KEY,JSON.stringify(obj));window.dispatchEvent(new CustomEvent('esp-learning-updated'));return true;}catch{return false;}};
+ const emit=(type,label='')=>{if(!allowed.has(type))return false;const obj=read();const clean=String(label).trim().slice(0,120);obj.events.push({id:crypto.randomUUID(),type,label:clean,time:now()});if(obj.events.length>MAX_EVENTS)obj.events=obj.events.slice(-MAX_EVENTS);try{localStorage.setItem(KEY,JSON.stringify(obj));window.dispatchEvent(new CustomEvent('esp-learning-updated'));return true;}catch{return false;}};
  let lastActivity=Date.now(),lastMinute=Date.now();
  ['pointerdown','keydown','scroll','touchstart'].forEach(name=>window.addEventListener(name,()=>{lastActivity=Date.now();},{passive:true}));
  // Only count full minutes when the tab is visible and recently used; never treat a background tab as study.
