@@ -394,20 +394,79 @@ $('page').addEventListener('click',function(e){
  if(card&&this.contains(card)){tapEffect(card);playEffect('tick');}
 },true);
 
-function fallbackSpeech(){if(!('speechSynthesis'in window)){pronouncing=false;showStatus('Thiết bị chưa hỗ trợ phát âm. Hãy cung cấp audio_url.');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(data.word);u.lang='en-GB';const voice=speechSynthesis.getVoices().find(v=>v.lang.toLowerCase()==='en-gb');if(voice)u.voice=voice;u.rate=.85;u.onstart=()=>showStatus('Đang phát âm…');u.onend=()=>{pronouncing=false;showStatus('');};u.onerror=()=>{pronouncing=false;showStatus('Không phát được giọng đọc. Hãy kiểm tra âm thanh thiết bị hoặc cung cấp audio_url.');};speechSynthesis.speak(u);}
-// Prefer device Text-to-Speech for vocabulary: temporary Dify audio URLs expire.
-// This does not save an MP3; pronunciation voice depends on the browser/OS.
-$('speak').onclick=()=>{
- if(!data)return;
+// Audio policy: 1. local selection, 2. optional versioned GitHub MP3,
+// 3. browser speech. Never rely on expiring Dify file signatures.
+let speechRequest=0;
+const espAudioRoot=new URL('../assets/vocabulary/', location.href);
+function espAudioSlug(word){
+ return String(word||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+   .toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+function espSpeak(text){
+ if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){
+   showStatus('Trình duyệt không hỗ trợ phát âm. Bạn có thể tải MP3 vào thư mục assets/vocabulary/.');return;
+ }
+ const synth=window.speechSynthesis;
+ try{synth.cancel();}catch(_e){}
+ const utterance=new SpeechSynthesisUtterance(text);
+ const voices=synth.getVoices()||[];
+ const voice=voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||voices.find(v=>/^en(?:-|$)/i.test(v.lang));
+ if(voice)utterance.voice=voice;
+ utterance.lang=voice?.lang||'en-GB';
+ utterance.rate=.88;
+ utterance.pitch=1;
+ utterance.onstart=()=>{pronouncing=true;showStatus('Đang phát âm bằng giọng đọc trình duyệt…');};
+ utterance.onend=()=>{pronouncing=false;showStatus('');};
+ utterance.onerror=event=>{pronouncing=false;if(event.error!=='canceled'&&event.error!=='interrupted')showStatus('Không phát được giọng đọc. Hãy kiểm tra âm lượng, cài đặt giọng tiếng Anh hoặc thử Chrome/Edge.');};
+ synth.speak(utterance);
+ try{synth.resume();}catch(_e){}
+}
+function espPlayableAudio(src,token,text){
+ return new Promise(resolve=>{
+   const candidate=new Audio();
+   candidate.preload='none';
+   let finished=false;
+   const settle=value=>{if(finished)return;finished=true;resolve(value);};
+   candidate.onended=()=>{if(token===speechRequest){pronouncing=false;showStatus('');}settle(true);};
+   candidate.onerror=()=>{candidate.pause();settle(false);};
+   candidate.src=src;
+   candidate.play().then(()=>{
+     if(token!==speechRequest){candidate.pause();settle(true);return;}
+     audio=candidate;pronouncing=true;showStatus('Đang phát âm: '+text);
+     // Playback is asynchronous; do not await its end to continue UI.
+     settle(true);
+   }).catch(()=>settle(false));
+ });
+}
+$('speak').onclick=async()=>{
+ if(!data||!String(data.word||'').trim())return;
+ const token=++speechRequest;
  stopEffectSounds();
- if(audio){audio.onended=null;audio.onerror=null;audio.pause();audio=null;}
- if('speechSynthesis' in window){fallbackSpeech();return;}
- // Only try the original audio when browser speech synthesis is unavailable.
- if(data.audio_url){
-  const playing=new Audio(data.audio_url);audio=playing;
-  playing.onerror=()=>{showStatus('File âm thanh Dify đã hết hạn. Trình duyệt không hỗ trợ đọc từ.');};
-  playing.play().catch(()=>showStatus('Không phát được audio Dify. Hãy thử trình duyệt Chrome hoặc Edge.'));
- }else{showStatus('Trình duyệt không hỗ trợ phát âm tự động.');}
+ if(audio){audio.pause();audio=null;}
+ if('speechSynthesis' in window)window.speechSynthesis.cancel();
+ const word=String(data.word).trim();
+ // Audio picked manually in Advanced Settings, if any.
+ if(/^data:audio\//i.test(data.audio_url||'')||/^blob:/i.test(data.audio_url||'')){
+   if(await espPlayableAudio(data.audio_url,token,word))return;
+ }
+ // Optional stable file: assets/vocabulary/intersection.mp3, .wav, .ogg
+ const slug=espAudioSlug(word);
+ if(slug){
+   for(const ext of ['mp3','wav','ogg']){
+     const url=new URL(slug+'.'+ext,espAudioRoot).href;
+     // An absent file is expected; only valid audio is played.
+     try{
+       const response=await fetch(url,{method:'HEAD',cache:'force-cache'});
+       const ctype=response.headers.get('content-type')||'';
+       if(response.ok && (/^audio\//i.test(ctype)||/application\/octet-stream/i.test(ctype))){
+         if(token!==speechRequest)return;
+         if(await espPlayableAudio(url,token,word))return;
+       }
+     }catch(_e){}
+     if(token!==speechRequest)return;
+   }
+ }
+ if(token===speechRequest)espSpeak(word);
 };
 
 const VEHICLE_SAMPLE={word:'vehicle',part_of_speech:'noun (countable)',ipa:'/ˈviː.ə.kəl/',meaning_vi:'phương tiện giao thông',definition_en:'Something used to transport people or goods, such as a car, bus, or bicycle.',image_url:'',object_count:1,audio_url:'',examples:[{en:'The officer stopped the vehicle for a routine check.',vi:'Cảnh sát đã dừng phương tiện để kiểm tra thường lệ.'},{en:'A stolen vehicle was found abandoned near the bridge.',vi:'Một phương tiện bị đánh cắp được tìm thấy trong tình trạng bị bỏ lại gần cây cầu.'}],collocations:[{en:'motor vehicle',vi:'phương tiện cơ giới'},{en:'emergency vehicle',vi:'phương tiện ưu tiên (xe cứu thương, xe cứu hỏa, v.v.)'},{en:'vehicle registration',vi:'đăng ký xe'}],usage_note:'“Vehicle” là từ chung, rộng hơn “car” (car chỉ xe ô tô con).\nDùng để chỉ mọi phương tiện trên đường, bao gồm cả xe cơ giới và không cơ giới tùy ngữ cảnh.',word_family:[{word:'vehicular',part_of_speech:'adjective',meaning_vi:'thuộc về phương tiện giao thông',example:'vehicular traffic'}]};
