@@ -520,9 +520,24 @@
 #message:not(:empty){margin:14px 0;padding:12px 15px;background:#fff;border:1px solid #dfd3ff;border-radius:12px;color:#51357e}
 .flash-input input:focus-visible{outline:2px solid #8b65c4;outline-offset:2px}
 @media(max-width:600px){.esp-flash-navigation span{font-size:10px}.flash-hero{padding:18px}.flash-hero h1{font-size:24px}.flash-brand{font-size:14px}}
+
+/* ESP AI Chatbot shared navigation: independent of flashcard/practice controls */
+.esp-global-tabs{width:100%;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:11px 12px;margin:0 auto 16px;border:1px solid var(--esp-tabs-border,#d6c8eb);border-radius:16px;background:#fff;box-shadow:0 5px 20px rgba(22,35,70,.07);position:relative;z-index:3}
+.esp-global-tabs a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:39px;padding:9px 13px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--esp-tabs-ink,#49326d);font:700 13px/1.25 Arial,sans-serif;white-space:nowrap;text-decoration:none;transition:background .15s,border-color .15s}
+.esp-global-tabs a:hover{background:var(--esp-tabs-hover,#f1eafa);border-color:var(--esp-tabs-border,#d6c8eb)}
+.esp-global-tabs a[aria-current="page"]{background:var(--esp-tabs-active,#542a80);color:#fff;border-color:var(--esp-tabs-active,#542a80)}
+.esp-global-tabs a:focus-visible{outline:3px solid #f0b44b;outline-offset:2px}
+@media(max-width:600px){.esp-global-tabs{gap:5px;padding:9px 6px;border-radius:12px}.esp-global-tabs a{padding:9px 8px;font-size:12px;flex:1 1 auto;white-space:normal;text-align:center}}
 </style>
 </head>
 <body>
+<nav class="esp-global-tabs" aria-label="ESP AI Chatbot - chuyển trang">
+  <a href="../index.html">⌂ <span>Home</span></a>
+  <a href="../assistant.html">✦ <span>AI Assistant</span></a>
+  <a href="meaning.html">▤ <span>Word Lookup</span></a>
+  <a href="flashcard.html" aria-current="page">▣ <span>Flashcard</span></a>
+  <a href="practice.html" >✎ <span>Practice</span></a>
+</nav>
   <main>
     <div class="esp-flash-navigation"><a href="../index.html" id="espFlashBack" aria-label="Quay lại ESP AI Chatbot">← Quay lại</a><span>ESP AI CHATBOT / FLASHCARDS</span></div>
     <section class="flash-entry" aria-labelledby="flashTitle">
