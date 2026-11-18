@@ -1,0 +1,10 @@
+/* ESP AI unified navigation — scoped, does not modify existing module styles */
+#esp-nav{position:relative;z-index:1000;font-family:Inter,"Segoe UI",Arial,sans-serif;color:#17334b;background:#fff;border-bottom:1px solid #d9e5e9;box-shadow:0 2px 12px rgba(12,42,64,.07)}
+#esp-nav *{box-sizing:border-box}#esp-nav .esp-nav-inner{max-width:1200px;margin:auto;padding:9px 17px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#esp-nav a{text-decoration:none!important;color:#1b465a!important}#esp-nav .esp-brand{font-size:14px;font-weight:800;white-space:nowrap;color:#0e4058!important}
+#esp-nav .esp-menu{display:flex;align-items:center;flex-wrap:wrap;gap:5px;flex:1}
+#esp-nav .esp-menu a,#esp-nav .esp-menu summary{font:600 13px/1.2 Inter,"Segoe UI",Arial,sans-serif;color:#1b465a!important;border:1px solid transparent;padding:9px 11px;border-radius:9px;cursor:pointer;background:transparent;list-style:none;display:block;white-space:nowrap}
+#esp-nav .esp-menu summary::-webkit-details-marker{display:none}#esp-nav .esp-menu a:hover,#esp-nav .esp-menu summary:hover,#esp-nav .esp-menu .esp-active{background:#e9f5f5;border-color:#cfebea;color:#006f73!important}
+#esp-nav details{position:relative}#esp-nav details[open]>summary{background:#e9f5f5}#esp-nav .esp-dropdown{position:absolute;top:calc(100% + 5px);left:0;min-width:215px;background:white;border:1px solid #d6e6eb;border-radius:12px;box-shadow:0 15px 32px rgba(12,42,64,.16);padding:6px;display:grid;gap:2px;z-index:10}
+#esp-nav .esp-dropdown a{white-space:nowrap}#esp-nav .esp-home{margin-left:auto!important;font-weight:700!important}
+@media(max-width:690px){#esp-nav .esp-nav-inner{padding:9px 12px;gap:4px}#esp-nav .esp-brand{width:100%}#esp-nav .esp-menu{gap:2px}#esp-nav .esp-menu a,#esp-nav .esp-menu summary{font-size:12px;padding:8px 9px}#esp-nav .esp-dropdown{left:auto;right:0;min-width:200px}}
