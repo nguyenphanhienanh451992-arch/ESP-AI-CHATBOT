@@ -1,0 +1,12 @@
+/* FIX / Portal navigation: one Home, accessible About dropdown. */
+.nav-dropdown{position:relative;display:flex;align-items:center;font-family:"Times New Roman",Times,serif;}
+.nav-dropdown-trigger{border:0;background:transparent;cursor:pointer;color:#18364b;display:flex;align-items:center;gap:6px;padding:13px 8px;font:700 15px "Times New Roman",Times,serif;white-space:nowrap;}
+.nav-chevron{font-size:19px;transition:transform .2s;}
+.nav-dropdown.is-open .nav-chevron{transform:rotate(180deg)}
+.nav-dropdown-panel{display:none;position:absolute;z-index:400;top:calc(100% - 2px);right:0;min-width:250px;padding:8px;border:1px solid #dce5e7;border-radius:12px;background:#fff;box-shadow:0 20px 44px #0b213d26;}
+.nav-dropdown.is-open .nav-dropdown-panel{display:flex;flex-direction:column;gap:3px;}
+.nav-dropdown-panel a{font:700 16px "Times New Roman",Times,serif;color:#193e50;text-decoration:none;padding:13px 14px;border-radius:8px;white-space:nowrap}
+.nav-dropdown-panel a:hover,.nav-dropdown-panel a:focus-visible{background:#edf6f4;color:#087c76}
+.nav-dropdown-trigger:focus-visible{outline:2px solid #087c76;outline-offset:2px;border-radius:5px}
+@media(min-width:901px){.nav-dropdown:hover .nav-dropdown-panel,.nav-dropdown:focus-within .nav-dropdown-panel{display:flex;flex-direction:column;gap:3px;}}
+@media(max-width:900px){.nav-dropdown{display:block;width:100%}.nav-dropdown-trigger{font-size:16px;width:100%;justify-content:space-between;padding:14px}.nav-dropdown-panel{position:static;box-shadow:none;margin:0 8px 8px;min-width:0;border-radius:8px}.nav-dropdown-panel a{white-space:normal}.nav-dropdown.is-open .nav-dropdown-panel{display:flex}}
