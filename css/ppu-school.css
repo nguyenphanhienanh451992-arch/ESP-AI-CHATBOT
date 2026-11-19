@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
+/* Font hệ thống Times New Roman: không phụ thuộc Google Fonts. */
 .school-page{--school-red:#a71925;--school-red-dark:#811921;--school-gold:#c69a4e;--school-deep:#09283f;--school-cream:#f7f4ef;background:#fff;color:#233440}
 .school-page .lang.en{display:none}.school-page.english .lang.vi{display:none}.school-page.english .lang.en{display:initial}
 .school-page .site-header{background:rgba(255,255,255,.97)}.school-page .site-nav a.active{background:#f8eaea;color:#971822}.school-page .topline{background:linear-gradient(90deg,#071e32 0 27%,#b71e2a 27% 74%,#d5ac57 74%)}
@@ -7,3 +7,93 @@
 @media(max-width:800px){.school-page .container{width:min(100% - 32px,1240px)}.school-hero-inner{grid-template-columns:1fr;gap:20px;padding:50px 0 68px}.school-logo-plate{display:flex;align-items:center;gap:18px;text-align:left;padding:0}.school-logo-plate img{width:125px;margin:0}.school-logo-plate>span{font-size:11px}.school-hero h1{font-size:clamp(33px,6.5vw,56px)}.school-flag{opacity:.32}.school-facts-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding-block:26px}.school-fact:nth-child(2){border:0}.school-fact:nth-child(3){padding-left:0}.school-section{padding:65px 0}.school-gallery{gap:14px}.gallery-content{padding:17px}.gallery-content h3{font-size:17px}.gallery-content p{font-size:14px}.school-achievements{padding:65px 0;background:linear-gradient(180deg,#2c2f33 0,#33363a 250px,#e6e2de 250px)}.honor-showcase{grid-template-columns:1fr 1fr;gap:10px}.honor-paper{grid-column:1/-1;grid-row:1}.honor-medal img{height:160px}.honor-medal>span{font-size:13px}.school-vision-card{width:100%}.school-bottom-inner{grid-template-columns:1fr;gap:20px}.school-bottom-actions{flex-direction:row;flex-wrap:wrap}.school-footer .container{align-items:start;flex-wrap:wrap}.school-footer p{order:3;max-width:100%}}
 @media(max-width:550px){.school-logo-plate img{width:96px}.school-hero-text{text-align:left;font-size:15px}.school-hero-lead{font-size:16px}.school-hero-actions .school-btn{width:100%}.school-flag span{width:32px;height:29px;font-size:17px}.school-facts-grid{gap:5px}.school-fact{gap:9px;padding:10px 6px}.school-fact-icon{width:38px;height:38px;font-size:19px}.school-fact strong{font-size:12px}.school-fact small{font-size:9px}.school-gallery{grid-template-columns:1fr;gap:22px}.gallery-card>img{aspect-ratio:1.75}.gallery-content h3{font-size:23px}.gallery-content p{font-size:16px}.school-section-title h2{font-size:36px}.school-achievements{background:linear-gradient(180deg,#2c2f33 0,#33363a 235px,#e6e2de 235px)}.honor-paper{padding:26px 19px;min-height:auto}.honor-paper h3{font-size:26px}.honor-paper p,.honor-list li{font-size:14px}.school-vision{padding-top:200px}.school-vision-image{height:275px}.school-vision-card{padding:27px 21px}.school-vision-card p{font-size:15px}.school-bottom{padding:60px 0}.school-bottom-actions .school-btn{width:100%}.school-footer{padding-bottom:80px}.language-switch{bottom:12px;right:12px}}
 @media(prefers-reduced-motion:reduce){.school-btn,.gallery-card{transition:none}}
+
+
+/* ===== QUY CHUẨN FONT ESP / PPU — 18.11.2026 =====
+   Áp dụng RIÊNG cho trang about-school.html.
+   Ghi đè font-family trong cả font shorthand ở các module và ppu-premium.css.
+   Không tác động đến các trang khác. */
+body.school-page,
+body.school-page *:not(svg):not(path),
+body.school-page *::before,
+body.school-page *::after {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+/* ========================================================
+   PPU School v4 – Times New Roman + layout repair
+   ======================================================== */
+.school-page, .school-page *, .school-page *::before, .school-page *::after {font-family:"Times New Roman",Times,serif !important;}
+.school-page{overflow-x:hidden;}
+.school-page .eyeline,.school-page .kicker{font-size:clamp(13px,1.15vw,17px);letter-spacing:.16em;font-weight:700;}
+/* Larger, accessible fact strip */
+.school-facts-grid{padding-block:34px;gap:0;}
+.school-fact{min-height:118px;gap:18px;padding:17px 25px;}
+.school-fact-icon{width:65px;height:65px;font-size:30px;}
+.school-fact small{font-size:clamp(12px,1.1vw,15px);letter-spacing:.07em;}
+.school-fact strong,.school-page.english .school-fact strong{font-size:clamp(17px,1.5vw,24px);line-height:1.25;overflow-wrap:anywhere;}
+/* Recognition heading: never overlap next section */
+.school-achievements{padding:0 0 95px;background:linear-gradient(to bottom,#2d2f33 0 350px,#e6e2de 350px 100%);}
+.recognition-heading{min-height:350px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:50px 18px 52px;box-sizing:border-box;}
+.recognition-heading .eyeline{color:#f4d185;}
+.recognition-heading h2{font-size:clamp(40px,5.8vw,86px);line-height:1.04;letter-spacing:-.025em;color:#fff;margin:19px 0 16px;font-weight:700;overflow-wrap:normal;}
+.recognition-heading h2 em{font-style:normal;color:#f4d594;}
+.recognition-heading p{font-size:clamp(15px,1.35vw,19px);max-width:760px;line-height:1.5;color:#f0ebe6;margin:0;}
+.honor-showcase{margin-top:42px;}
+/* Vision: full-width banner followed by side-by-side independent gallery and text */
+.school-vision.future-section{padding:0;background:#e7e3de;}
+.future-banner{min-height:clamp(310px,37vw,540px);background:linear-gradient(180deg,#0b1f2d6e,#0b1f2d8f),url('../assets/school/vision-background.jpg') center 48%/cover no-repeat;display:flex;align-items:center;justify-content:center;}
+.future-banner-shade{text-align:center;padding:52px 24px;max-width:1100px;}
+.future-banner .eyeline{color:#fff4d9;}
+.future-banner h2{margin:20px 0 0;color:#ffdf8d;font-size:clamp(46px,7vw,108px);line-height:1.05;letter-spacing:-.02em;text-shadow:0 3px 20px #09172391;}
+.future-banner h2 em{font-style:normal;display:inline;color:#ffe5a2;}
+.future-content-wrap{padding:67px 0 92px;}
+.future-content-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.35fr);gap:clamp(24px,3vw,48px);align-items:start;}
+.future-gallery{width:100%;min-width:0;}
+.future-slider{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;border-radius:12px;background:#d9d4ce;box-shadow:0 20px 40px #211e1a18;}
+.future-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;}
+.future-slide.is-active{opacity:1;visibility:visible;z-index:1;}
+.future-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
+.future-slide figcaption{position:absolute;inset:auto 0 0;padding:45px 22px 19px;color:#fff;background:linear-gradient(transparent,#091b2eb8);font-size:18px;font-weight:700;}
+.future-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:18px;}
+.future-arrow{border:1px solid #beb7af;background:#fff;color:#20374c;border-radius:50%;font-size:22px;width:43px;height:43px;cursor:pointer;}
+.future-dots{display:flex;gap:10px;align-items:center;}
+.future-dot{width:14px;height:14px;border:0;border-radius:50%;background:#b8b7b6;cursor:pointer;padding:0;}
+.future-dot.is-active{background:#9e1e2b;box-shadow:0 0 0 4px #9e1e2b20;}
+.future-card{background:#fbf8f3;border:1px solid #efe5d9;border-radius:16px;padding:clamp(24px,3vw,44px);box-shadow:0 12px 30px #20211d0b;min-width:0;}
+.future-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-bottom:17px;margin-bottom:23px;border-bottom:1px solid #ccb9a9;}
+.future-card h3{margin:0;color:#8c2028;font-size:clamp(25px,2.4vw,38px);line-height:1.17;letter-spacing:0;}
+.future-translate{flex:none;white-space:nowrap;border:1px solid #344c5d;background:#fff;border-radius:22px;padding:9px 14px;cursor:pointer;font-size:15px;color:#23404e;}
+.future-card-body p,.future-card-body li{font-size:clamp(17px,1.48vw,21px);line-height:1.63;color:#333;}
+.future-card-body p{margin:0 0 16px;text-align:justify;}
+.future-card-body ul{margin:0 0 19px;padding-left:26px;}
+.future-card-body li{margin:0 0 9px;padding-left:4px;}
+.future-card-body li::marker{color:#9e2330;}
+.school-page .future-card-body .lang.en,.school-page .future-card-body .lang.vi{display:none;}
+.school-page:not(.english) .future-card-body .lang.vi,.school-page.english .future-card-body .lang.en{display:block;}
+@media(max-width:1100px){
+ .school-fact{gap:12px;padding:16px 14px;}.school-fact-icon{width:54px;height:54px;font-size:25px;}
+ .school-fact strong,.school-page.english .school-fact strong{font-size:17px;}
+ .future-content-grid{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:24px;}
+ .future-card-head{flex-wrap:wrap;}.future-card h3{font-size:29px;}
+}
+@media(max-width:800px){
+ .school-facts-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:15px;}
+ .school-fact{min-height:105px;padding:17px!important;border-bottom:1px solid #e3d8c9;}
+ .school-fact:nth-child(even){border-right:0;}.school-fact:nth-child(n+3){border-bottom:0;}
+ .recognition-heading{min-height:310px;}.school-achievements{background:linear-gradient(to bottom,#2d2f33 0 310px,#e6e2de 310px);}
+ .future-content-grid{grid-template-columns:1fr;gap:30px;}
+ .future-gallery{width:min(100%,540px);margin:auto;}.future-slider{aspect-ratio:4/3;}
+ .future-banner{min-height:360px;}.future-card{padding:27px;}
+}
+@media(max-width:550px){
+ .school-facts-grid{grid-template-columns:1fr;}.school-fact{padding:15px 8px!important;border-right:0!important;border-bottom:1px solid #e3d8c9!important;min-height:88px;}
+ .school-fact:last-child{border-bottom:0!important;}
+ .school-fact strong,.school-page.english .school-fact strong{font-size:19px;}
+ .recognition-heading{min-height:270px;padding:36px 14px;}.recognition-heading h2{font-size:clamp(34px,9vw,55px);}
+ .school-achievements{background:linear-gradient(to bottom,#2d2f33 0 270px,#e6e2de 270px);}
+ .future-banner{min-height:290px;}.future-banner h2{font-size:clamp(39px,10vw,59px);}
+ .future-content-wrap{padding:32px 0 58px;}.future-slider{aspect-ratio:3/4;}
+ .future-card-head{display:block;}.future-translate{margin-top:14px;}.future-card-body p{text-align:left;}
+}
+@media(prefers-reduced-motion:reduce){.future-slide{transition:none;}}
